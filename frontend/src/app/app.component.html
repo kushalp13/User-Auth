@@ -1,0 +1,13 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm fixed-top">
+<h5 class="my-0 mr-md-auto font-weight-normal">Queue Bliz</h5>
+<nav class="my-2 my-md-0 mr-md-3">
+  <a *ngIf="this.authService.isLoggedIn" class="p-2 text-dark">User Profile</a>
+  <a *ngIf="!this.authService.isLoggedIn" class="p-2 text-dark" routerLinkActive="active" routerLink="/log-in">Signin</a>
+</nav>
+<a *ngIf="!this.authService.isLoggedIn" class="btn btn-outline-primary" routerLinkActive="active" routerLinkActive="active" routerLink="/sign-up">Sign up</a>
+<button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button>
+</div>
+<br>
+<br>
+<br>
+<router-outlet></router-outlet>

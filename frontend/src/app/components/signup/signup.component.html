@@ -1,0 +1,90 @@
+<div class="card m-3">
+    <h5 class="card-header">Register</h5>
+    <div class="card-body">
+        <form [formGroup]="signupForm" (ngSubmit)="registerUser()">
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Name</label>
+                    <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required">First Name is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Gender</label>
+                    <!-- <input type="radio" formControlName="gender" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }" />
+                    <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                        <div *ngIf="f.gender.errors.required">gender is required</div>
+                    </div> -->
+                    &nbsp;
+                    <label>
+                        <input type="radio" value="Male" formControlName="gender">
+                        <span>Male</span>
+                    </label>
+                    &nbsp;
+                    <label>
+                        <input type="radio" value="Female" formControlName="gender">
+                        <span>Female</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label for="age">Age</label>
+                    &nbsp;
+                    <input formControlName="age" id="age" type="number">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <div class="preview" *ngIf="preview && preview !== null">
+                        <img [src]="preview" width="300" height="300">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Avatar</label>
+                    <input type="file" (change)="uploadFile($event)">
+                </div>
+                <div *ngIf="submitted && f.avatar.errors" class="invalid-feedback">
+                    <div *ngIf="f.avatar.errors.required">Avatar is required</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Password</label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.errors.minlength">Password must be at least 5 characters</div>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label>Confirm Password</label>
+                    <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                        <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Register</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- <pre>{{signupForm.value | json}}</pre>
+<pre>{{signupForm.valid}}</pre> -->
